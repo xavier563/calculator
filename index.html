@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Revenue Leak Calculator — Nuvox AI</title>
+<title>Revenue Leak Calculator - Nuvox AI</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,6 +22,7 @@
     padding: 24px 20px 48px;
   }
 
+  /* CARD */
   .nc-card {
     width: 100%;
     max-width: 960px;
@@ -37,7 +38,6 @@
     overflow: hidden;
   }
 
-  /* top accent */
   .nc-card::before {
     content: '';
     position: absolute;
@@ -46,7 +46,6 @@
     background: linear-gradient(90deg, transparent, rgba(96,165,250,0.6), rgba(129,140,248,0.7), transparent);
   }
 
-  /* bg glow */
   .nc-card::after {
     content: '';
     position: absolute;
@@ -56,7 +55,7 @@
     pointer-events: none;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   .nc-header {
     margin-bottom: 36px;
     position: relative;
@@ -94,7 +93,7 @@
     margin: 0 0 32px;
   }
 
-  /* ── CURRENCY ── */
+  /* CURRENCY */
   .nc-currency-row {
     display: flex;
     align-items: center;
@@ -128,7 +127,7 @@
     box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
   }
 
-  /* ── FIELDS GRID ── */
+  /* FIELDS GRID */
   .nc-fields {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -150,7 +149,7 @@
     color: #e2e8f0;
     line-height: 1.4;
     margin-bottom: 5px;
-    min-height: 38px; /* keeps labels same height so inputs align */
+    min-height: 40px;
     display: flex;
     align-items: flex-end;
   }
@@ -238,7 +237,7 @@
 
   .nc-select option { background: #0f172a; color: #f1f5f9; }
 
-  /* ── CALCULATE BTN ── */
+  /* CALCULATE BUTTON */
   .nc-btn {
     width: 100%;
     padding: 16px 24px;
@@ -265,7 +264,7 @@
 
   .nc-btn:active { transform: translateY(0); }
 
-  /* ── ERROR ── */
+  /* ERROR */
   .nc-error {
     display: none;
     margin-top: 14px;
@@ -280,7 +279,7 @@
     z-index: 1;
   }
 
-  /* ── RESULTS ── */
+  /* RESULTS */
   .nc-results {
     display: none;
     margin-top: 40px;
@@ -309,7 +308,7 @@
     margin-bottom: 20px;
   }
 
-  /* Hero number */
+  /* HERO BOX */
   .nc-hero-box {
     background: radial-gradient(ellipse at top left, rgba(239,68,68,0.08), rgba(14,17,28,0.92) 65%);
     border: 1px solid rgba(239,68,68,0.3);
@@ -360,32 +359,32 @@
 
   .nc-hero-annual {
     font-size: 15px;
-    color: rgba(252,165,165,0.55);
+    color: rgba(252,165,165,0.5);
     letter-spacing: -0.01em;
     text-align: right;
   }
 
-  /* Explanation */
+  /* EXPLANATION */
   .nc-explanation {
     background: rgba(10,14,25,0.6);
     border: 1px solid rgba(129,140,248,0.14);
     border-radius: 12px;
-    padding: 16px 18px;
+    padding: 18px 20px;
   }
 
   .nc-explanation-title {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(148,163,184,0.6);
-    margin-bottom: 10px;
+    color: rgba(148,163,184,0.55);
+    margin-bottom: 12px;
   }
 
   .nc-explanation-text {
     font-size: 13.5px;
-    color: rgba(203,213,225,0.8);
-    line-height: 1.7;
+    color: rgba(203,213,225,0.82);
+    line-height: 1.75;
   }
 
   .nc-explanation-text strong {
@@ -393,99 +392,13 @@
     font-weight: 600;
   }
 
-  /* ── EMAIL CAPTURE ── */
-  .nc-email-section {
-    background: rgba(14,17,28,0.7);
-    border: 1px solid rgba(129,140,248,0.18);
-    border-radius: 14px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
+  .nc-explanation-sep {
+    height: 1px;
+    background: rgba(129,140,248,0.12);
+    margin: 14px 0;
   }
 
-  .nc-email-title {
-    font-size: 14.5px;
-    font-weight: 600;
-    color: #e2e8f0;
-    margin-bottom: 4px;
-  }
-
-  .nc-email-sub {
-    font-size: 12.5px;
-    color: rgba(100,116,139,0.85);
-    margin-bottom: 16px;
-    line-height: 1.55;
-  }
-
-  .nc-email-row {
-    display: flex;
-    gap: 10px;
-  }
-
-  .nc-email-input {
-    flex: 1;
-    padding: 11px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(129,140,248,0.28);
-    background: rgba(17,24,39,0.9);
-    color: #f1f5f9;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    min-width: 0;
-  }
-
-  .nc-email-input:focus {
-    border-color: rgba(96,165,250,0.65);
-    box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
-  }
-
-  .nc-email-input::placeholder { color: rgba(71,85,105,0.75); }
-
-  .nc-email-btn {
-    padding: 11px 20px;
-    border-radius: 10px;
-    background: rgba(15,23,42,0.95);
-    border: 1px solid rgba(129,140,248,0.6);
-    color: #e0e7ff;
-    font-size: 13.5px;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-  }
-
-  .nc-email-btn:hover {
-    background: rgba(24,35,68,0.95);
-    border-color: rgba(191,219,254,0.7);
-    transform: translateY(-1px);
-  }
-
-  .nc-email-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-  .nc-email-feedback {
-    display: none;
-    font-size: 13px;
-    margin-top: 10px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    line-height: 1.5;
-  }
-
-  .nc-email-feedback.success {
-    color: rgba(134,239,172,0.9);
-    background: rgba(34,197,94,0.06);
-    border: 1px solid rgba(34,197,94,0.18);
-  }
-
-  .nc-email-feedback.error {
-    color: rgba(252,165,165,0.9);
-    background: rgba(239,68,68,0.06);
-    border: 1px solid rgba(239,68,68,0.18);
-  }
-
-  /* ── CTA ── */
+  /* CTA */
   .nc-cta {
     display: flex;
     align-items: center;
@@ -505,6 +418,7 @@
     transition: all 0.2s ease;
     box-shadow: 0 0 32px rgba(255,255,255,0.28);
     letter-spacing: -0.01em;
+    margin-top: 16px;
   }
 
   .nc-cta:hover {
@@ -520,7 +434,7 @@
 
   .nc-cta:hover svg { transform: translateX(3px); }
 
-  /* ── MOBILE ── */
+  /* MOBILE */
   @media (max-width: 780px) {
     .nc-card { padding: 32px 24px 32px; border-radius: 18px; }
     .nc-title { font-size: 23px; }
@@ -536,76 +450,66 @@
     .nc-hero-numbers { align-items: flex-start; }
     .nc-hero-annual { text-align: left; }
     .nc-hero-monthly { font-size: 34px; }
-    .nc-email-row { flex-direction: column; }
-    .nc-email-btn { width: 100%; text-align: center; padding: 13px 20px; }
   }
 </style>
 </head>
 <body>
 
 <div class="nc-wrap">
-  <div class="nc-card">
+  <div class="nc-card" id="nc-card">
 
-    <!-- HEADER -->
     <div class="nc-header">
       <div class="nc-eyebrow">Revenue Leak Calculator</div>
       <h2 class="nc-title">How much are you losing every month?</h2>
-      <p class="nc-subtitle">If your business runs on booked appointments, slow follow-up is likely your biggest hidden cost. Put in your numbers and we'll show you exactly what it's worth — and where it's coming from.</p>
+      <p class="nc-subtitle">If your business runs on booked appointments, slow follow-up is likely your biggest hidden cost. Put in your numbers and we will show you exactly what it is worth and where it is coming from.</p>
     </div>
 
     <div class="nc-divider"></div>
 
-    <!-- CURRENCY -->
     <div class="nc-currency-row">
       <span class="nc-currency-label">Currency symbol:</span>
       <input type="text" id="nc-currency" class="nc-currency-input" placeholder="$" maxlength="3" value="$">
     </div>
 
-    <!-- FIELDS -->
     <div class="nc-fields">
 
-      <!-- Leads -->
       <div class="nc-field">
         <div class="nc-field-label">How many leads do you get per month?</div>
-        <div class="nc-field-hint">All inbound enquiries — from ads, forms, calls, or referrals.</div>
+        <div class="nc-field-hint">All inbound enquiries from ads, forms, calls, or referrals.</div>
         <input type="number" id="nc-leads" class="nc-input" placeholder="e.g. 100" min="1">
       </div>
 
-      <!-- Response time -->
       <div class="nc-field">
         <div class="nc-field-label">How quickly does your team usually follow up?</div>
-        <div class="nc-field-hint">Be honest — this is the number that matters most.</div>
+        <div class="nc-field-hint">Be honest. This is the number that matters most.</div>
         <select id="nc-response" class="nc-select">
           <option value="" disabled selected>Select response time</option>
           <option value="65">Within 5 minutes</option>
           <option value="50">Within 30 minutes</option>
-          <option value="35">Within 1–2 hours</option>
-          <option value="25">Same day (2–8 hours)</option>
+          <option value="35">Within 1 to 2 hours</option>
+          <option value="25">Same day (2 to 8 hours)</option>
           <option value="15">Next day or longer</option>
         </select>
       </div>
 
-      <!-- Show rate -->
       <div class="nc-field">
         <div class="nc-field-label">Out of everyone who books an appointment or sales call, how many actually show up?</div>
-        <div class="nc-field-hint"><em>No reminder system? Most businesses see 65–75%.</em></div>
+        <div class="nc-field-hint"><em>No reminder system? Most businesses see 65 to 75%.</em></div>
         <div class="nc-input-wrap">
           <input type="number" id="nc-show" class="nc-input has-suffix" placeholder="e.g. 72" min="1" max="100">
           <span class="nc-input-suffix">%</span>
         </div>
       </div>
 
-      <!-- Close rate -->
       <div class="nc-field">
         <div class="nc-field-label">What's your close rate?</div>
-        <div class="nc-field-hint">Out of everyone you speak to, how many become paying customers?</div>
+        <div class="nc-field-hint">Of the people you actually speak to, how many become paying customers?</div>
         <div class="nc-input-wrap">
           <input type="number" id="nc-close" class="nc-input has-suffix" placeholder="e.g. 25" min="1" max="100">
           <span class="nc-input-suffix">%</span>
         </div>
       </div>
 
-      <!-- Deal value -->
       <div class="nc-field">
         <div class="nc-field-label">What's a new customer worth to you?</div>
         <div class="nc-field-hint">Average value of a single deal, job, or booking.</div>
@@ -614,13 +518,10 @@
 
     </div>
 
-    <!-- BUTTON -->
-    <button class="nc-btn" onclick="ncCalculate()">Calculate My Revenue Leak →</button>
+    <button class="nc-btn" onclick="ncCalculate()">Calculate My Revenue Leak</button>
 
-    <!-- ERROR -->
     <div class="nc-error" id="nc-error">Please fill in all five fields above to see your results.</div>
 
-    <!-- RESULTS -->
     <div class="nc-results" id="nc-results">
 
       <div class="nc-results-divider"></div>
@@ -630,32 +531,20 @@
         <div class="nc-hero-top">
           <div class="nc-hero-left">
             <div class="nc-hero-label">Estimated revenue leaking per month</div>
-            <div class="nc-hero-sub">From leads you're already paying for — just not capturing.</div>
+            <div class="nc-hero-sub">From leads you are already paying for, just not capturing.</div>
           </div>
           <div class="nc-hero-numbers">
-            <div class="nc-hero-monthly" id="nc-out-monthly">—</div>
-            <div class="nc-hero-annual" id="nc-out-annual">— per year</div>
+            <div class="nc-hero-monthly" id="nc-out-monthly"></div>
+            <div class="nc-hero-annual" id="nc-out-annual"></div>
           </div>
         </div>
 
         <div class="nc-explanation">
           <div class="nc-explanation-title">How we got this number</div>
-          <div class="nc-explanation-text" id="nc-explanation-text">—</div>
+          <div class="nc-explanation-text" id="nc-explanation-text"></div>
         </div>
       </div>
 
-      <!-- EMAIL -->
-      <div class="nc-email-section">
-        <div class="nc-email-title">Want this sent to you?</div>
-        <div class="nc-email-sub">Enter your email and we'll send you a clean breakdown. No pitch, no follow-up unless you ask.</div>
-        <div class="nc-email-row">
-          <input type="email" id="nc-email" class="nc-email-input" placeholder="your@email.com">
-          <button class="nc-email-btn" id="nc-email-btn" onclick="ncSendEmail()">Send it to me</button>
-        </div>
-        <div class="nc-email-feedback" id="nc-email-feedback"></div>
-      </div>
-
-      <!-- CTA -->
       <a class="nc-cta" href="https://calendly.com/xavier-hublaunchhq/ai-discovery-call-clone-1?month=2026-02" target="_blank" rel="noopener">
         <span>Book a strategy call to see how we can fix this for you</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -669,19 +558,29 @@
 </div>
 
 <script>
-  /* ── stored calc data for webhook ── */
-  var _ncData = null;
+  /* DYNAMIC IFRAME RESIZE
+     Posts document height to parent on load and after results appear.
+     Add this listener to any page hosting the iframe:
 
-  /* ── response time → label map ── */
+     window.addEventListener('message', function(e) {
+       if (e.data && e.data.type === 'nc-resize') {
+         document.querySelector('iframe').style.height = e.data.height + 'px';
+       }
+     });
+  */
+  function ncPostHeight() {
+    var h = document.body.scrollHeight;
+    window.parent.postMessage({ type: 'nc-resize', height: h }, '*');
+  }
+
   var _responseLabels = {
     '65': 'within 5 minutes',
     '50': 'within 30 minutes',
-    '35': 'within 1–2 hours',
-    '25': 'same day (2–8 hours)',
+    '35': 'within 1 to 2 hours',
+    '25': 'same day',
     '15': 'next day or longer'
   };
 
-  /* ── format currency ── */
   function ncFmt(sym, val) {
     var v = Math.round(val);
     if (v >= 1000000) return sym + (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -689,19 +588,25 @@
     return sym + v.toLocaleString();
   }
 
-  /* ── CALCULATE ── */
+  function ncFireWebhook(data) {
+    fetch('https://hook.us2.make.com/m9pe6erynvmenxhnv6xhge1injzw9zyk', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(function() {});
+  }
+
   function ncCalculate() {
     var errorEl   = document.getElementById('nc-error');
     var resultsEl = document.getElementById('nc-results');
 
-    var currency     = (document.getElementById('nc-currency').value || '$').trim();
-    var leads        = parseFloat(document.getElementById('nc-leads').value);
-    var responseEl   = document.getElementById('nc-response');
-    var responseVal  = responseEl.value;
-    var contactRate  = parseFloat(responseVal) / 100;
-    var show         = parseFloat(document.getElementById('nc-show').value);
-    var close        = parseFloat(document.getElementById('nc-close').value);
-    var dealValue    = parseFloat(document.getElementById('nc-value').value);
+    var currency    = (document.getElementById('nc-currency').value || '$').trim();
+    var leads       = parseFloat(document.getElementById('nc-leads').value);
+    var responseVal = document.getElementById('nc-response').value;
+    var contactRate = parseFloat(responseVal) / 100;
+    var show        = parseFloat(document.getElementById('nc-show').value);
+    var close       = parseFloat(document.getElementById('nc-close').value);
+    var dealValue   = parseFloat(document.getElementById('nc-value').value);
 
     var invalid =
       isNaN(leads)     || leads     <= 0 ||
@@ -713,6 +618,7 @@
     if (invalid) {
       errorEl.style.display   = 'block';
       resultsEl.style.display = 'none';
+      ncPostHeight();
       return;
     }
 
@@ -720,27 +626,14 @@
 
     var closeRate        = close / 100;
     var showRate         = show  / 100;
-    var benchmarkContact = 0.70; /* 60-second response benchmark */
-    var benchmarkShow    = 0.80; /* reminder call benchmark */
+    var benchmarkContact = 0.70;
+    var benchmarkShow    = 0.80;
 
-    /*
-      Leak 1 — Contact rate gap
-      How many leads you're currently reaching vs how many you could reach
-      with a 60-second response. The difference, multiplied through close
-      rate and deal value, is the monthly revenue being left behind.
-    */
     var currentlyContacted  = leads * contactRate;
     var potentialContacted  = leads * benchmarkContact;
     var missedConversations = Math.max(0, potentialContacted - currentlyContacted);
     var leakContact         = missedConversations * closeRate * dealValue;
 
-    /*
-      Leak 2 — Show rate gap
-      Of the leads you do speak to, some book but don't show up.
-      A reminder call before the appointment moves show rate to 85%+.
-      The gap between your current show rate and that benchmark,
-      applied to your monthly bookings, is the second part of the leak.
-    */
     var monthlyBookings = currentlyContacted * closeRate;
     var showGap         = Math.max(0, benchmarkShow - showRate);
     var leakShow        = monthlyBookings * showGap * dealValue;
@@ -748,14 +641,11 @@
     var totalMonthly = leakContact + leakShow;
     var totalAnnual  = totalMonthly * 12;
 
-    /* ── Render numbers ── */
-    document.getElementById('nc-out-monthly').textContent = ncFmt(currency, totalMonthly);
+    document.getElementById('nc-out-monthly').textContent = ncFmt(currency, totalMonthly) + ' / month';
     document.getElementById('nc-out-annual').textContent  = ncFmt(currency, totalAnnual) + ' per year';
 
-    /* ── Build plain-English explanation ── */
     var responseLabel    = _responseLabels[responseVal] || 'at your current speed';
     var contactPct       = Math.round(contactRate * 100);
-    var benchmarkPct     = Math.round(benchmarkContact * 100);
     var reachedNow       = Math.round(currentlyContacted);
     var reachedPotential = Math.round(potentialContacted);
     var missedRounded    = Math.round(missedConversations);
@@ -763,41 +653,36 @@
     var showPct          = Math.round(show);
     var noShows          = Math.round(monthlyBookings * showGap);
 
-    var explanation = '';
+    var exp = '';
 
-    /* Part 1 — follow-up speed */
-    explanation += '<strong>Slow follow-up</strong><br>';
-    explanation += 'When businesses follow up ' + responseLabel + ', ';
-    explanation += 'research shows they reach around ' + contactPct + '% of their leads on average. ';
-    explanation += '(This is an estimate based on your response time. Your actual number may vary.) ';
-    explanation += 'Out of your ' + Math.round(leads) + ' monthly leads, that\'s about ' + reachedNow + ' people you\'re actually speaking to. ';
-    explanation += 'Businesses that respond within 60 seconds consistently reach around ' + benchmarkPct + '%, ';
-    explanation += 'which would be ' + reachedPotential + ' conversations from the same leads. ';
+    exp += '<strong>Slow follow-up</strong><br>';
+    exp += 'When businesses follow up ' + responseLabel + ', research shows they reach around ' + contactPct + '% of their leads on average. ';
+    exp += '(This is an estimate based on your response time. Your actual number may vary.) ';
+    exp += 'Out of your ' + Math.round(leads) + ' monthly leads, that is about ' + reachedNow + ' people you are actually speaking to. ';
+    exp += 'Businesses that respond within 60 seconds consistently reach around 70%, which would be ' + reachedPotential + ' conversations from the same leads. ';
 
     if (missedRounded > 0) {
-      explanation += 'That gap is <strong>' + missedRounded + ' missed conversations per month.</strong> ';
-      explanation += 'At your close rate and deal value, those conversations are worth ' + ncFmt(currency, leakContact) + ' monthly.';
+      exp += 'That gap is <strong>' + missedRounded + ' missed conversations per month.</strong> ';
+      exp += 'At your close rate and deal value, those conversations are worth ' + ncFmt(currency, leakContact) + ' monthly.';
     } else {
-      explanation += 'Your follow-up speed is already close to the benchmark.';
+      exp += 'Your follow-up speed is already close to the benchmark.';
     }
 
-    /* Part 2 — show rate */
     if (showGap > 0.01) {
-      explanation += '<br><br><div style="height:1px;background:rgba(129,140,248,0.12);margin:2px 0 10px;"></div>';
-      explanation += '<strong>No-shows</strong><br>';
-      explanation += 'Of the ' + bookingsRounded + ' appointments your team books each month, ';
-      explanation += 'a ' + showPct + '% show rate means roughly ' + noShows + ' people don\'t turn up. ';
-      explanation += 'Businesses using a reminder call before each appointment typically see show rates reach 80% or higher. ';
-      explanation += 'Those ' + noShows + ' missed appointments are worth ' + ncFmt(currency, leakShow) + ' monthly.';
+      exp += '<div class="nc-explanation-sep"></div>';
+      exp += '<strong>No-shows</strong><br>';
+      exp += 'Of the ' + bookingsRounded + ' appointments your team books each month, ';
+      exp += 'a ' + showPct + '% show rate means roughly ' + noShows + ' people do not turn up. ';
+      exp += 'Businesses using a reminder call before each appointment typically see show rates reach 80% or higher. ';
+      exp += 'Those ' + noShows + ' missed appointments are worth ' + ncFmt(currency, leakShow) + ' monthly.';
     } else {
-      explanation += '<br><br><div style="height:1px;background:rgba(129,140,248,0.12);margin:2px 0 10px;"></div>';
-      explanation += 'Your show rate is already strong. Most of the leak is coming from follow-up speed.';
+      exp += '<div class="nc-explanation-sep"></div>';
+      exp += 'Your show rate is already strong. Most of the leak is coming from follow-up speed.';
     }
 
-    document.getElementById('nc-explanation-text').innerHTML = explanation;
+    document.getElementById('nc-explanation-text').innerHTML = exp;
 
-    /* ── Store for webhook ── */
-    _ncData = {
+    ncFireWebhook({
       currency             : currency,
       leads_per_month      : Math.round(leads),
       response_time        : _responseLabels[responseVal],
@@ -809,80 +694,29 @@
       leak_noshow_monthly  : Math.round(leakShow),
       total_monthly        : Math.round(totalMonthly),
       total_annual         : Math.round(totalAnnual)
-    };
+    });
 
-    /* ── Show results with animation ── */
     resultsEl.style.display = 'none';
     void resultsEl.offsetWidth;
     resultsEl.style.display = 'block';
 
     setTimeout(function() {
       resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(ncPostHeight, 400);
     }, 80);
   }
 
-  /* ── SEND EMAIL ── */
-  function ncSendEmail() {
-    var emailInput  = document.getElementById('nc-email');
-    var feedbackEl  = document.getElementById('nc-email-feedback');
-    var btn         = document.getElementById('nc-email-btn');
-    var email       = emailInput.value.trim();
-
-    feedbackEl.style.display = 'none';
-    feedbackEl.className     = 'nc-email-feedback';
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      feedbackEl.textContent  = 'Please enter a valid email address.';
-      feedbackEl.className    = 'nc-email-feedback error';
-      feedbackEl.style.display = 'block';
-      return;
-    }
-
-    if (!_ncData) return;
-
-    btn.disabled    = true;
-    btn.textContent = 'Sending…';
-
-    var payload = {};
-    for (var k in _ncData) payload[k] = _ncData[k];
-    payload.email = email;
-
-    fetch('https://hook.us2.make.com/m9pe6erynvmenxhnv6xhge1injzw9zyk', {
-      method : 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify(payload)
-    })
-    .then(function(res) {
-      /* Make.com webhooks often return opaque/CORS responses —
-         treat any response (or network error) as success since
-         the payload almost certainly arrived */
-      showEmailSuccess();
-    })
-    .catch(function() {
-      showEmailSuccess();
-    });
-
-    function showEmailSuccess() {
-      feedbackEl.textContent   = '✓ Sent. Check your inbox shortly.';
-      feedbackEl.className     = 'nc-email-feedback success';
-      feedbackEl.style.display = 'block';
-      emailInput.value         = '';
-      btn.textContent          = 'Sent ✓';
-    }
-  }
-
-  /* ── Enter key on inputs triggers calculate ── */
   (function() {
-    var ids = ['nc-leads','nc-show','nc-close','nc-value','nc-currency'];
+    var ids = ['nc-leads', 'nc-show', 'nc-close', 'nc-value', 'nc-currency'];
     for (var i = 0; i < ids.length; i++) {
       (function(id) {
         var el = document.getElementById(id);
         if (el) el.onkeydown = function(e) { if (e.key === 'Enter') ncCalculate(); };
       })(ids[i]);
     }
-    var emailEl = document.getElementById('nc-email');
-    if (emailEl) emailEl.onkeydown = function(e) { if (e.key === 'Enter') ncSendEmail(); };
   })();
+
+  window.onload = function() { ncPostHeight(); };
 </script>
 
 </body>
